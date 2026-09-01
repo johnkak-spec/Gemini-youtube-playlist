@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Playlist Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    select, button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+    .player-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .player-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>YouTube Playlist Player</h1>
+  
+  <div class="controls">
+    <label for="playlistSelect"><strong>Select Playlist:</strong></label>
+    <select id="playlistSelect">
+      <option value="PLmMQ4tQNmMhJq41MUnX_va1FdIK1Gu4IK">AI Videos</option>
+      <option value="PLmMQ4tQNmMhK4048bB1A587FUIqzfhkLT">Limnes</option>
+      <option value="PLVwachCBTSJa7aSGR-2nStCmXrCn2_eb_">Classic Playlist</option>
+    </select>
+    
+    <button onclick="loadPlaylist()">Play Selected Playlist</button>
+  </div>
+
+  <div class="player-container">
+    <iframe id="youtubePlayer" 
+      src="https://www.youtube.com/embed/videoseries?list=PLmMQ4tQNmMhJq41MUnX_va1FdIK1Gu4IK" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<script>
+  function loadPlaylist() {
+    const playlistId = document.getElementById('playlistSelect').value;
+    const player = document.getElementById('youtubePlayer');
+    player.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`;
+  }
+</script>
+
+</body>
+</html>
